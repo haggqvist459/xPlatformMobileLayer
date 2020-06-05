@@ -16,9 +16,10 @@ const BaseList = () => {
     
     //fetch the data from the service layer 
     async function getBaseLayouts() {
+        console.log("starting to fetch base layouts");
         //one variable to hold them all 
         const allTheBases = [];
-        const fetchedBaseLayouts = await fetch("http://192.168.0.3/4000/baseLayouts", {
+        const fetchedBaseLayouts = await fetch("http://192.168.0.8:4000/baseLayouts", {
             method: "GET"
         });
 
@@ -27,11 +28,12 @@ const BaseList = () => {
         
         //put the json-formatted baselayouts into an array
         jsonBases.forEach((baseFetched) => {
-            allTheBases.push(basesFetched.base);
+            allTheBases.push(baseFetched.base);
         });
 
         //set the array of base layouts to the list of base layouts to be displayed in the FlatList
         setBaseList(allTheBases);
+        console.log(allTheBases);
     }
 
     try {
