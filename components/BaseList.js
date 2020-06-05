@@ -14,9 +14,6 @@ const BaseList = () => {
     //all the base layouts in the database to be used in the FlatList
     const [baseList, setBaseList] = useState();
     
-    
-    
-    
     //fetch the data from the service layer 
     async function getBaseLayouts() {
         //one variable to hold them all 
@@ -37,7 +34,11 @@ const BaseList = () => {
         setBaseList(allTheBases);
     }
 
-
+    try {
+        getBaseLayouts();
+    } catch (error) {
+        console.log(error);
+    }
 
 
 
@@ -51,7 +52,7 @@ const BaseList = () => {
                 <FlatList
                     data={baseList}
                     renderItem={({base}) => (
-                        
+                       <View styles={styles.mockupImg}></View> 
                     )}
                 />
             </View> : 
@@ -69,5 +70,13 @@ const BaseList = () => {
 
 export default BaseList
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    mockupImg:{
+        flex: 0.9,
+        height: 150,
+        backgroundColor: 'blue',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+})
 
