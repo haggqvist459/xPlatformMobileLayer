@@ -6,12 +6,12 @@ import BaseList from "../components/BaseList";
 
 const Home = () => {
 
-    const [compBaseList, setCompBaseList] = useState(true);
+    const [baseListComponent, setCompBaseList] = useState(true);
 
-    // null for now, login page later
+    // only null for now, can be something else in the future
     return (
         <View>
-            {compBaseList ? <BaseList/> : null}
+            {baseListComponent ? <BaseList/> : null}
         </View>
     )
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/styles';
 import BaseLayout from "./BaseLayout";
 
@@ -58,7 +58,10 @@ const BaseList = () => {
     }, [refresh]);
     
 
-
+    const handlePress = (id) => {
+        setShowList(false);
+        console.log(id);
+    }
 
 
     return (
@@ -68,9 +71,17 @@ const BaseList = () => {
             //when one of them is clicked, set showList to false to render the detail content
             <View>
                 <FlatList
+                    keyExtractor={(item) => item.baseID}
                     data={baseList}
-                    renderItem={({base}) => (
-                       <View styles={styles.mockupImg}></View> 
+                    renderItem={({item}) => (
+                        <TouchableOpacity 
+                            style={styles.mockupImg}
+                            onPress={() => handlePress(item.baseID)}>
+                                <Text>{item.armyComposition}</Text>
+                                <Text>{item.baseID}</Text>
+                                <Text>{item.youtubeURL}</Text>
+                                <Text>{item.imageURL}</Text>
+                        </TouchableOpacity>
                     )}
                 />
             </View> : 
@@ -90,12 +101,14 @@ export default BaseList
 
 const styles = StyleSheet.create({
     mockupImg:{
-        flex: 0.9,
-        height: 150,
+        height: 90,
         backgroundColor: 'blue',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
+        margin: 10,
+        borderColor: 'black',
+        borderWidth: 1,
     },
 })
 
