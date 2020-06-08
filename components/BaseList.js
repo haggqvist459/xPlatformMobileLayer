@@ -1,30 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { globalStyles } from '../styles/styles';
 import BaseLayout from "./BaseLayout";
 
 
 
+
 const BaseList = () => {
     
-    //boolean to toggle between list and detail
+    // boolean to toggle between list and detail
     const [showList, setShowList] = useState(true);
-    //document name, used to show correct detailed content
+    // document name, used to show correct detailed content
     const [baseLayoutId, setBaseLayoutId] = useState('noBaseSelected');
-    //all the base layouts in the database to be used in the FlatList
+    // all the base layouts in the database to be used in the FlatList
     const [baseList, setBaseList] = useState();
+    //a boolean to determine whether content needs to be refreshed
+    const [refresh, setRefresh] = useState(true);
     
     //fetch the data from the service layer 
     async function getBaseLayouts() {
         console.log("starting to fetch base layouts");
         //one variable to hold them all 
         const allTheBases = [];
-        const fetchedBaseLayouts = await fetch("http://192.168.0.8:4000/baseLayouts", {
-            method: "GET"
-        });
 
+        let url = 'http://192.168.0.3:4000/baseLayout';
+        let response = await fetch(url);
+        let jsonBases;
+
+        if(response.ok){
+            jsonBases = await response.json();
+        } else {
+            alert("HTTP-Error: " + response.status);
+        }        
         //turn it into a json format
-        const jsonBases = await fetchedBaseLayouts.json();
+        //const jsonBases = await fetchedBaseLayouts.json();
         
         //put the json-formatted baselayouts into an array
         jsonBases.forEach((baseFetched) => {
@@ -34,13 +43,20 @@ const BaseList = () => {
         //set the array of base layouts to the list of base layouts to be displayed in the FlatList
         setBaseList(allTheBases);
         console.log(allTheBases);
+
     }
 
-    try {
-        getBaseLayouts();
-    } catch (error) {
-        console.log(error);
-    }
+    useEffect(()=>{
+        try {
+            //fetch the base layouts
+            getBaseLayouts();
+            //set refresh to false so this only happens once
+            setRefresh(false);
+        } catch (error) {
+            console.log(error);
+        }
+    }, [refresh]);
+    
 
 
 
@@ -79,6 +95,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'blue',
         alignItems: 'center',
         justifyContent: 'center',
+        padding: 10,
     },
 })
 
