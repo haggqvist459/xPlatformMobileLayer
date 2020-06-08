@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { globalStyles } from '../styles/styles';
 
-const BaseLayout = () => {
+const BaseLayout = (props) => {
     return (
-        <View>
-            <TouchableOpacity>
-                    <Text>BaseLayout</Text>
-            </TouchableOpacity>
+        <View styles={styles.mockupImg}>
+           <Text>{props.base.armyComposition}</Text>
+           <Text>{props.base.imageURL}</Text>
+           <Text>{props.base.youtubeURL}</Text>
+           <Text>{props.base.baseID}</Text>
         </View>
     )
 }
@@ -20,5 +21,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: 100,
     },
-
+    mockupImg: {
+        height: 90,
+        backgroundColor: 'blue',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        margin: 10,
+        borderColor: 'black',
+        borderWidth: 1,
+    },
 })

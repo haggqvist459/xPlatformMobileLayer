@@ -11,7 +11,7 @@ const BaseList = () => {
     // boolean to toggle between list and detail
     const [showList, setShowList] = useState(true);
     // document name, used to show correct detailed content
-    const [baseLayoutId, setBaseLayoutId] = useState('noBaseSelected');
+    const [baseLayout, setBaseLayout] = useState();
     // all the base layouts in the database to be used in the FlatList
     const [baseList, setBaseList] = useState();
     //a boolean to determine whether content needs to be refreshed
@@ -58,9 +58,10 @@ const BaseList = () => {
     }, [refresh]);
     
 
-    const handlePress = (id) => {
+    const handlePress = (item) => {
+        setBaseLayout(item);
         setShowList(false);
-        console.log(id);
+        console.log(item);
     }
 
 
@@ -76,7 +77,7 @@ const BaseList = () => {
                     renderItem={({item}) => (
                         <TouchableOpacity 
                             style={styles.mockupImg}
-                            onPress={() => handlePress(item.baseID)}>
+                            onPress={() => handlePress(item)}>
                                 <Text>{item.armyComposition}</Text>
                                 <Text>{item.baseID}</Text>
                                 <Text>{item.youtubeURL}</Text>
@@ -90,7 +91,7 @@ const BaseList = () => {
                     {/* back button here */}    
                 </View>
                 <View>
-                    <BaseLayout/>
+                    <BaseLayout base={baseLayout}/>
                 </View>   
             </View>}
         </View>    
@@ -100,7 +101,7 @@ const BaseList = () => {
 export default BaseList
 
 const styles = StyleSheet.create({
-    mockupImg:{
+    mockupImg: {
         height: 90,
         backgroundColor: 'blue',
         alignItems: 'center',
