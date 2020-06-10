@@ -11,7 +11,6 @@ const BaseLayout = (props) => {
                 source={{uri: props.base.imageURL}}    
                 /> 
             <Text>{props.base.armyComposition}</Text>
-            <Text>{props.base.imageURL}</Text>
             <Text>{props.base.baseID}</Text>
             <TouchableOpacity>
                 <Text onPress={() => Linking.openURL(props.base.youtubeURL)}>{props.base.youtubeURL}</Text>
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
     },
     mockupImg: {
         height: 90,
-        backgroundColor: 'blue',
+        backgroundColor: 'greyç',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
