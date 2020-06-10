@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Linking } from 'react-native';
 import { globalStyles } from '../styles/styles';
 
 const BaseLayout = (props) => {
     return (
         <View styles={styles.mockupImg}>
-           <Text>{props.base.armyComposition}</Text>
-           <Text>{props.base.imageURL}</Text>
-           <Text>{props.base.youtubeURL}</Text>
-           <Text>{props.base.baseID}</Text>
+            {/* neeed to add space between the bits and pieces so youtube URL's can be pressed */}
+            <Image 
+                style={styles.baseLayoutImage}
+                source={{uri: props.base.imageURL}}    
+                /> 
+            <Text>{props.base.armyComposition}</Text>
+            <Text>{props.base.imageURL}</Text>
+            <Text>{props.base.baseID}</Text>
+            <TouchableOpacity>
+                <Text onPress={() => Linking.openURL(props.base.youtubeURL)}>{props.base.youtubeURL}</Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -20,6 +27,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: 100,
+    },
+    baseLayoutImage: {
+        width: 250,
+        resizeMode: 'contain',
+
     },
     mockupImg: {
         height: 90,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, Button } from 'react-native';
 import { globalStyles } from '../styles/styles';
 import BaseLayout from "./BaseLayout";
 
@@ -64,6 +64,12 @@ const BaseList = () => {
         console.log(item);
     }
 
+    const backPressed = () => {
+        setBaseLayout('');
+        setShowList(true);
+        console.log('back button pressed');
+    }
+
 
     return (
         <View>
@@ -87,13 +93,20 @@ const BaseList = () => {
                 />
             </View> : 
             <View>
-                <View>
-                    {/* back button here */}    
+                {/* Base Layout details */}
+                <View style={styles.mockupImg} >
+                    <BaseLayout 
+                        base={baseLayout}/>
                 </View>
-                <View>
-                    <BaseLayout base={baseLayout}/>
+                <View style={styles.backButtonView}>
+                    {/* back button here */}
+                    <Button
+                        title="back" 
+                        onPress={() => backPressed()}
+                        style={styles.backButton}/>
                 </View>   
             </View>}
+            {/* end of ternary operator */}
         </View>    
     )
 }
@@ -110,6 +123,14 @@ const styles = StyleSheet.create({
         margin: 10,
         borderColor: 'black',
         borderWidth: 1,
+    },
+    backButtonView: {
+
+    },
+    backButton: {
+        position: 'absolute',
+        bottom: 10,
+        left: 10,
     },
 })
 
