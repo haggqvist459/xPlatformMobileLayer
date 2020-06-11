@@ -2,16 +2,24 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View } from 'react-native';
 import { globalStyles } from '../styles/styles';
 import BaseList from "../components/BaseList";
+import SignIn from "../components/SignIn";
+import Register from "../components/Register";
 
 
 const Home = () => {
 
+    //currently not in use
     const [baseListComponent, setCompBaseList] = useState(true);
 
-    // only null for now, can be something else in the future
+    //used to determine content based on whether the user is signed in or not
+    const [signedIn, setSignedIn] = useState(false);
+    const [needsRegistration, setNeedRegistration] = useState(false);
+
+
     return (
         <View>
-            {baseListComponent ? <BaseList/> : null}
+            {/* ternary operator switching between login and content */}
+            {signedIn ? <BaseList/>:<signIn/>}
         </View>
     )
 }
