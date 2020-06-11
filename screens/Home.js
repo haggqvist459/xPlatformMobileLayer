@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { globalStyles } from '../styles/styles';
 import BaseList from "../components/BaseList";
 import SignIn from "../components/SignIn";
-import Register from "../components/Register";
+
 
 
 const Home = () => {
@@ -13,13 +13,11 @@ const Home = () => {
 
     //used to determine content based on whether the user is signed in or not
     const [signedIn, setSignedIn] = useState(false);
-    const [needsRegistration, setNeedRegistration] = useState(false);
-
 
     return (
         <View>
             {/* ternary operator switching between login and content */}
-            {signedIn ? <BaseList/>:<signIn/>}
+            {signedIn ? <BaseList/> : <SignIn/>}
         </View>
     )
 }
