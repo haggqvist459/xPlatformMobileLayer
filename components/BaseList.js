@@ -27,13 +27,12 @@ const BaseList = () => {
         let response = await fetch(url);
         let jsonBases;
 
+         //turn it into a json format
         if(response.ok){
             jsonBases = await response.json();
         } else {
             alert("HTTP-Error: " + response.status);
         }        
-        //turn it into a json format
-        //const jsonBases = await fetchedBaseLayouts.json();
         
         //put the json-formatted baselayouts into an array
         jsonBases.forEach((baseFetched) => {
@@ -46,10 +45,14 @@ const BaseList = () => {
 
     }
 
+
     useEffect(()=>{
         try {
             //fetch the base layouts
             getBaseLayouts();
+
+            //also need to do something here for the image file path
+            
             //set refresh to false so this only happens once
             setRefresh(false);
         } catch (error) {
@@ -70,7 +73,6 @@ const BaseList = () => {
         console.log('back button pressed');
     }
 
-
     return (
         <View>
             {showList ? 
@@ -81,13 +83,16 @@ const BaseList = () => {
                     keyExtractor={(item) => item.baseID}
                     data={baseList}
                     renderItem={({item}) => (
-                        <TouchableOpacity 
+                        <TouchableOpacity
                             style={styles.mockupImg}
                             onPress={() => handlePress(item)}>
+                            
+                            <View>
                                 <Text>{item.armyComposition}</Text>
                                 <Text>{item.baseID}</Text>
                                 <Text>{item.youtubeURL}</Text>
                                 <Text>{item.imageURL}</Text>
+                            </View>
                         </TouchableOpacity>
                     )}
                 />
@@ -115,7 +120,7 @@ export default BaseList
 
 const styles = StyleSheet.create({
     mockupImg: {
-        height: 90,
+        height: 100,
         backgroundColor: 'blue',
         alignItems: 'center',
         justifyContent: 'center',
@@ -131,6 +136,10 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 10,
         left: 10,
+    },
+    image: {
+        height: 300,
+        resizeMode: 'contain',
     },
 })
 
