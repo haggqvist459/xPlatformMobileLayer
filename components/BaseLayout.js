@@ -8,8 +8,7 @@ const BaseLayout = (props) => {
             {/* neeed to add space between the bits and pieces so youtube URL's can be pressed */}
             <Image 
                 style={styles.baseLayoutImage}
-                source={{uri: props.base.imageURL}}    
-                /> 
+                source={{uri: props.base.imageURL}}/> 
             <Text>{props.base.armyComposition}</Text>
             <Text>{props.base.baseID}</Text>
             <TouchableOpacity>
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
     },
     mockupImg: {
         height: 90,
-        backgroundColor: 'greyç',
+        backgroundColor: 'grey',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,

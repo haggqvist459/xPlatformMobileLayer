@@ -4,7 +4,7 @@ import { globalStyles } from '../styles/styles';
 
 const Register = () => {
     return (
-        <View styles={}>
+        <View>
             {/* Sign In*/}
             <TextInput
                 style={styles.inputField}

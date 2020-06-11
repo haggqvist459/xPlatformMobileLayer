@@ -12,7 +12,7 @@ const Home = () => {
     const [baseListComponent, setCompBaseList] = useState(true);
 
     //used to determine content based on whether the user is signed in or not
-    const [signedIn, setSignedIn] = useState(false);
+    const [signedIn, setSignedIn] = useState(true);
 
     return (
         <View>
