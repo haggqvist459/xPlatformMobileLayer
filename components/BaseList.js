@@ -16,6 +16,7 @@ const BaseList = () => {
     const [baseList, setBaseList] = useState();
     //a boolean to determine whether content needs to be refreshed
     const [refresh, setRefresh] = useState(true);
+    
     //fetch the data from the service layer 
     async function getBaseLayouts() {
         console.log("starting to fetch base layouts");
@@ -51,7 +52,7 @@ const BaseList = () => {
             getBaseLayouts();
 
             //also need to do something here for the image file path
-            setUpImage();
+            
             //set refresh to false so this only happens once
             setRefresh(false);
         } catch (error) {
@@ -60,7 +61,7 @@ const BaseList = () => {
     }, [refresh]);
     
     const setUpImage = () => {
-
+        
     }
 
     const handlePress = (item) => {
