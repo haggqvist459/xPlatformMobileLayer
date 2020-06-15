@@ -56,6 +56,7 @@ const Experiment = () => {
             console.log(baseList);
 
 
+
             //set refresh to false so this only happens once
             setRefresh(false);
         } catch (error) {
@@ -73,16 +74,17 @@ const Experiment = () => {
 
 
     return (
-        <View>
+        <View style={styles.container}>
             <FlatList
                 keyExtractor={(item) => item.baseID}
                 data={baseList}
                 renderItem={({item}) => (
                     <TouchableOpacity
-                        style={styles.mockupImg}
+                        //style={styles.mockupImg}
                         onPress={() => handlePress(item)}>
                         <Image
                             style={styles.baseImage}
+                            source={require('../assets/QAcemU9OPRmn8Yj9uCsM.png')}
                         />
                     </TouchableOpacity>
                 )}
@@ -90,10 +92,16 @@ const Experiment = () => {
         </View>
     )
 }
-
+//require(`../assets/${item.imageURL}` ) }
 export default Experiment
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
     mockupImg: {
         flex: 1,
         height: 100,
@@ -114,7 +122,7 @@ const styles = StyleSheet.create({
         left: 10,
     },
     baseImage: {
-        flex: 0.9,
+        width: '90%',
         resizeMode: 'contain',
     },
 })

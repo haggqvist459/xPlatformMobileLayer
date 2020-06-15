@@ -3,9 +3,20 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, Linking } from 'react-
 import { globalStyles } from '../styles/styles';
 
 const Register = () => {
+
+    // states
+    
+    
+
+
+    //functions
+
+
+
     return (
         <View>
-            {/* Sign In*/}
+            {/* Register */}
+            <Text styles={styles.registerText}>Register</Text>
             <TextInput
                 style={styles.inputField}
                 autoCapitalize="none"
@@ -16,6 +27,14 @@ const Register = () => {
                 value={registrationEmail}/>
             <TextInput
                 style={styles.inputField}
+                placeholder="username"
+                autoCapitalize="none"
+                autoCorrect={false}
+                onChangeText={(username) => setRegistrationPassword(username)}
+                clearTextOnFocus={true}
+                value={userName}/>     
+            <TextInput
+                style={styles.inputField}
                 placeholder="password"
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -23,16 +42,6 @@ const Register = () => {
                 clearTextOnFocus={true}
                 secureTextEntry={true}
                 value={registrationPassword}/>
-            <TextInput
-                style={styles.inputField}
-                placeholder="username"
-                autoCapitalize="none"
-                autoCorrect={false}
-                onChangeText={(username) => setRegistrationPassword(username)}
-                clearTextOnFocus={true}
-                secureTextEntry={true}
-                value={userName}/> 
-            
         </View>
     )
 }
@@ -41,7 +50,14 @@ export default Register
 
 const styles = StyleSheet.create({
     inputField: {
+        borderWidth: 1,
+        borderRadius: 5,
+        borderColor: '#152238',
 
     },
- 
+    registerText: {
+        color: '#152238',
+        fontSize: 18,
+        
+    },
 })
