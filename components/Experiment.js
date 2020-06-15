@@ -6,7 +6,7 @@ import BaseLayout from "./BaseLayout";
 
 
 
-const BaseList = () => {
+const Experiment = () => {
     
     // boolean to toggle between list and detail
     const [showList, setShowList] = useState(true);
@@ -23,14 +23,18 @@ const BaseList = () => {
         const allTheBases = [];
 
         let url = 'http://192.168.0.3:4000/baseLayout';
-        let response = await fetch(url);
+        let fetchedBases = await fetch(url, 
+            {
+                method: "GET"
+            }
+        );
         let jsonBases;
-
+        
          //turn it into a json format
-        if(response.ok){
-            jsonBases = await response.json();
+        if(fetchedBases.ok){
+            jsonBases = await fetchedBases.json();
         } else {
-            alert("HTTP-Error: " + response.status);
+            alert("HTTP-Error: " + fetchedBases.status);
         }        
         
         //put the json-formatted baselayouts into an array
@@ -49,9 +53,7 @@ const BaseList = () => {
         try {
             //fetch the base layouts
             getBaseLayouts();
-
             //also need to do something here for the image file path
-            setUpImage();
             //set refresh to false so this only happens once
             setRefresh(false);
         } catch (error) {
@@ -60,68 +62,41 @@ const BaseList = () => {
     }, [refresh]);
     
     const setUpImage = () => {
-
+        
     }
 
     const handlePress = (item) => {
         setBaseLayout(item);
-        setShowList(false);
+        alert('pressed');
         console.log(item);
     }
 
-    const backPressed = () => {
-        setBaseLayout('');
-        setShowList(true);
-        console.log('back button pressed');
-    }
 
     return (
         <View>
-            {showList ? 
-            //First the list of base layouts
-            //when one of them is clicked, set showList to false to render the detail content
-            <View>
-                <FlatList
-                    keyExtractor={(item) => item.baseID}
-                    data={baseList}
-                    renderItem={({item}) => (
-                        <TouchableOpacity
-                            style={styles.mockupImg}
-                            onPress={() => handlePress(item)}>
-                            
-                            <View>
-                                <Text>{item.armyComposition}</Text>
-                                <Text>{item.baseID}</Text>
-                                <Text>{item.youtubeURL}</Text>
-                                <Text>{item.imageURL}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    )}
-                />
-            </View> : 
-            <View>
-                {/* Base Layout details */}
-                <View style={styles.mockupImg} >
-                    <BaseLayout 
-                        base={baseLayout}/>
-                </View>
-                <View style={styles.backButtonView}>
-                    {/* back button here */}
-                    <Button
-                        title="back" 
-                        onPress={() => backPressed()}
-                        style={styles.backButton}/>
-                </View>   
-            </View>}
-            {/* end of ternary operator */}
-        </View>    
+            <FlatList
+                keyExtractor={(item) => item.baseID}
+                data={baseList}
+                renderItem={({item}) => (
+                    <TouchableOpacity
+                        style={styles.mockupImg}
+                        onPress={() => handlePress(item)}>
+                        <Image
+                            style={styles.baseImage}
+                            source={{uri: item.imageURL}}
+                        />
+                    </TouchableOpacity>
+                )}
+            />
+        </View>
     )
 }
 
-export default BaseList
+export default Experiment
 
 const styles = StyleSheet.create({
     mockupImg: {
+        flex: 1,
         height: 100,
         backgroundColor: 'blue',
         alignItems: 'center',
@@ -139,8 +114,8 @@ const styles = StyleSheet.create({
         bottom: 10,
         left: 10,
     },
-    image: {
-        height: 300,
+    baseImage: {
+        flex: 0.9,
         resizeMode: 'contain',
     },
 })

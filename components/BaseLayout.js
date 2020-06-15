@@ -13,7 +13,7 @@ const BaseLayout = (props) => {
         
         try {
             //set the image url here
-            setImageURLs();
+            setImageURL();
             //set refresh to false so this only happens once
             setRefresh(false);
         } catch (error) {
@@ -26,6 +26,7 @@ const BaseLayout = (props) => {
         setShowList(false);
         console.log(item);
     }
+
     return (
         <View>
             {/* neeed to add space between the bits and pieces so youtube URL's can be pressed */}

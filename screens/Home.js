@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { globalStyles } from '../styles/styles';
 import BaseList from "../components/BaseList";
 import SignIn from "../components/SignIn";
-
+import Experiment from '../components/Experiment';
 
 
 const Home = () => {
@@ -17,7 +17,9 @@ const Home = () => {
     return (
         <View>
             {/* ternary operator switching between login and content */}
-            {signedIn ? <BaseList/> : <SignIn/>}
+            
+             {/*             {signedIn ? <BaseList/> : <SignIn/>} */}   
+            <Experiment/>
         </View>
     )
 }
