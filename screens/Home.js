@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { globalStyles } from '../styles/styles';
 import * as firebase from "firebase";
 import BaseList from "../components/BaseList";
@@ -13,7 +13,7 @@ const Home = () => {
     const [baseListComponent, setCompBaseList] = useState(true);
 
     // used to determine content based on whether the user is signed in or not
-    const [signedIn, setSignedIn] = useState(false);
+    const [signedIn, setSignedIn] = useState(true);
 
     // variable to toggle between registration and sign in
     const [needsRegistration, setNeedRegistration] = useState(false);
@@ -48,6 +48,7 @@ const Home = () => {
         .then(function (user) {
         console.log("Authentication successful");
         console.log(user.uid);
+        authenticateSuccess();
         })
         .catch(function (error) {
         console.log(error);
@@ -73,65 +74,7 @@ const Home = () => {
 
     return (
         <View>
-            {signedIn ? (<View></View>):(
-                //Authentication
-                <View styles={styles.outerBox}>
-                {needsRegistration ? 
-                <View styles={styles.innerBox}>
-                    {/* Register */}
-                    <Text styles={styles.headingText}>Register</Text>
-                    <TextInput
-                        style={styles.inputField}
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        placeholder="e-mail"
-                        onChangeText={(xx) => setRegistrationEmail(xx)}
-                        clearTextOnFocus={true}
-                        value={registrationEmail}/>
-                    <TextInput
-                        style={styles.inputField}
-                        placeholder="password"
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        onChangeText={(password) => setRegistrationPassword(password)}
-                        clearTextOnFocus={true}
-                        secureTextEntry={true}
-                        value={registrationPassword}/>
-                    <Button
-                        style={styles.authButtons} 
-                        onPress={() => registerUser()}>Register</Button>
-                    <Button
-                        style={styles.authButtons} 
-                        onPress={() => setNeedRegistration(false)}>Back</Button>
-                </View>: 
-                    // Sign In View, needs one text, two inputs and two buttons, sign in and register 
-                <View styles={styles.innerBox}>
-                    <Text styles={styles.headingText}>Log in</Text>
-                    <TextInput
-                        style={styles.inputField}
-                            autoCapitalize="none"
-                            placeholder="e-mail"
-                            onChangeText={(xx) => setEmail(xx)}
-                            clearTextOnFocus={true}
-                            autoCorrect={false}
-                        value={email}/>
-                    <TextInput
-                        style={styles.inputField}
-                            placeholder="password"
-                            autoCapitalize="none"
-                            onChangeText={(xx) => setPassword(xx)}
-                            clearTextOnFocus={true}
-                            secureTextEntry={true}
-                            autoCorrect={false}
-                        value={password}/>
-                    <Button
-                        style={styles.authButtons} 
-                        onPress={() => setNeedRegistration(true)}>Register</Button>
-                    <Button
-                        style={styles.authButtons} 
-                        onPress={() => authenticateUser()}>Sign In</Button>
-                </View>}       
-            </View>)}    
+            <BaseList/>
         </View>
     )
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity, Button } from 'react-native';
 import { globalStyles } from '../styles/styles';
 import BaseLayout from "./BaseLayout";
+import BaseImage from "./BaseImage";
 
 
 
@@ -54,9 +55,6 @@ const Experiment = () => {
             //also need to do something here for the image file path
             console.log('--baseList: ')  
             console.log(baseList);
-
-
-
             //set refresh to false so this only happens once
             setRefresh(false);
         } catch (error) {
@@ -74,17 +72,17 @@ const Experiment = () => {
 
 
     return (
-        <View style={styles.container}>
+        <View>
             <FlatList
                 keyExtractor={(item) => item.baseID}
                 data={baseList}
                 renderItem={({item}) => (
                     <TouchableOpacity
-                        //style={styles.mockupImg}
+                        style={styles.mockupImg}
                         onPress={() => handlePress(item)}>
-                        <Image
-                            style={styles.baseImage}
-                            source={require('../assets/QAcemU9OPRmn8Yj9uCsM.png')}
+                        <BaseImage
+                            imageURI={item.imageURI}
+                            armyComposition={item.armyComposition}
                         />
                     </TouchableOpacity>
                 )}
@@ -92,7 +90,7 @@ const Experiment = () => {
         </View>
     )
 }
-//require(`../assets/${item.imageURL}` ) }
+
 export default Experiment
 
 const styles = StyleSheet.create({
