@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, Linking } from 'react-native';
 import { globalStyles } from '../styles/styles';
-
+//CURRENTLY NOT IN USE
 
 const BaseLayout = (props) => {
 
@@ -21,11 +21,7 @@ const BaseLayout = (props) => {
         }
     }, [refresh]);
 
-    const setImageURLs = (item) => {
-        setBaseLayout(item);
-        setShowList(false);
-        console.log(item);
-    }
+
 
     return (
         <View>

@@ -9,9 +9,4 @@ export const globalStyles = StyleSheet.create({
   text: {
       color: 'lightgrey',
   },
-  baseLayoutImage: {
-    flex: 0.9,
-    resizeMode: 'center',
-    padding: 10,
-  },
 });

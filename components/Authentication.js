@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, Linking, TextInput, TouchableWithoutFeedback, Button } from 'react-native';
 import { globalStyles } from '../styles/styles';
 import Register from "./Register";
+//NOT IN USE YET
 
 const Authentication = () => {
     

@@ -13,6 +13,8 @@ export default function BaseList() {
     const [baseList, setBaseList] = useState();
     // document name, used to show correct detailed content
     const [baseLayout, setBaseLayout] = useState();
+    // boolean to toggle between list and detail
+    const [showList, setShowList] = useState(false);    
 
     //ajax call, fetch data from the service layer
     async function getBaseLayouts() {
@@ -52,15 +54,16 @@ export default function BaseList() {
           console.log('--baseList: ')  
           console.log(baseList);
           //set refresh to false so this only happens once
-          setRefresh(false);
         } catch (error) {
           console.log(error);
         }
     }, []);
 
     const handlePress = (item) => {
+        //pass the data to the baselayout
         setBaseLayout(item);
-        alert('pressed');
+        setShowList(false);
+        //alert('pressed');
         console.log(item);
     }
 
@@ -71,14 +74,11 @@ export default function BaseList() {
                 keyExtractor={(item) => item.baseID}
                 data={baseList}
                 renderItem={({item}) => (
-                    <TouchableOpacity
-                        style={styles.mockupImg}
-                        onPress={() => handlePress(item)}>
                         <BaseImage
                             imageURI={item.imageURI}
                             armyComposition={item.armyComposition}
+                            youtubeURL={item.youtubeURL}
                         />
-                    </TouchableOpacity>
                 )}
             />
         </View>
@@ -86,16 +86,12 @@ export default function BaseList() {
 }
 
 const styles = StyleSheet.create({
-    mockupImg: {
-        height: 100,
-        backgroundColor: 'blue',
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 10,
-        margin: 10,
-        borderColor: 'black',
-        borderWidth: 1,
-    },
+      },
     backButtonView: {
 
     },
@@ -103,10 +99,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 10,
         left: 10,
-    },
-    image: {
-        height: 300,
-        resizeMode: 'contain',
     },
 })
 

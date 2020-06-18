@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image, Linking } from 'react-native';
 import { globalStyles } from '../styles/styles';
+//NOT IN USE YET
+
+
 
 const Register = () => {
 

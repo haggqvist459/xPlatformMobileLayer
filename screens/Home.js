@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, SafeAreaView } from 'react-native';
 import { globalStyles } from '../styles/styles';
 import * as firebase from "firebase";
 import BaseList from "../components/BaseList";
 import Authentication from "../components/Authentication";
-import Experiment from '../components/Experiment';
 
 
 const Home = () => {

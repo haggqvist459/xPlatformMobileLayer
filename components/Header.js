@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         height: 100,
     },
     text: {
+        fontSize: 36,
         color: 'lightgrey',
     },
 });
