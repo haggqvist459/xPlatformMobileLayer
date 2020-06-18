@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {Linking, StyleSheet, Text, View, Image, TouchableWithoutFeedback, Dimensions} from 'react-native';
 
-
+// custom component that needs army composition, image filepath, youtube url and name of the youtube channel
 export default function BaseImage ({armyComposition, imageURI, youtubeURL, youtubeChannel}){
     
     const [imagePath, setImagePath] = useState();
@@ -14,13 +14,16 @@ export default function BaseImage ({armyComposition, imageURI, youtubeURL, youtu
         console.log("inside BaseImage");
         console.log(imageURI);
     }, []);
-
+    
     return (
+            //this component sets up the image and all the data around it
             <View style={styles.flatListItem}>
+                {/* the image gets the width and height calculated depending on the window size */} 
                 <Image 
-                    source={{uri: imageURI}}
+                    source={{uri: imagePath}}
                     style={{height: imageHeight, width: imageWidth, resizeMode: 'center', alignSelf: 'center'}}
                 />
+                {/* this view should be as wide as the image. holds all the other information about the layout */}
                 <View style={[{width: imageWidth}, styles.textView]}>
                     <View style={{flexDirection: 'row'}}>
                         <TouchableWithoutFeedback
