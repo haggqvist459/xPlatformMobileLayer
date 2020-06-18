@@ -7,8 +7,10 @@ import Home from './screens/Home';
 
 
 export default function App() {
+
+
   return (
-    <View>
+    <View style={styles.container}>
       <Header/>
       <Home style={styles.container}/>
     </View>

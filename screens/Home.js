@@ -72,9 +72,9 @@ const Home = () => {
 
 
     return (
-        <View>
-            <BaseList/>
-        </View>
+        <SafeAreaView style={styles.container}>
+            <BaseList style={styles.container}/>
+        </SafeAreaView>
     )
 }
 

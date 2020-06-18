@@ -78,6 +78,7 @@ export default function BaseList() {
                             imageURI={item.imageURI}
                             armyComposition={item.armyComposition}
                             youtubeURL={item.youtubeURL}
+                            youtubeChannel={item.youtubeChannel}
                         />
                 )}
             />
